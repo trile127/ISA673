@@ -24,7 +24,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 
 # Load Url Data
-urls_data = pandas.read_csv("url_heavy.csv")
+urls_data = pandas.read_csv("url_0.txt")
 
 # Labels
 y = urls_data["label"]
@@ -37,7 +37,7 @@ vectorizer = TfidfVectorizer()
 
 # Store vectors into X variable as Our XFeatures
 x = vectorizer.fit_transform(url_list)
-x_trn, x_tst, y_trnLabel, y_tstLabel = train_test_split(x, y, test_size=0.01, random_state=42)
+x_trn, x_tst, y_trnLabel, y_tstLabel = train_test_split(x, y, test_size=0.1, random_state=42)
 
 def linearregression():
 	print '\n### Running Linear Regression Algorithm\n'
@@ -51,9 +51,17 @@ def linearregression():
 
 	#Predict Output
 	predicted= model.predict(x_tst)
+	predicted_threshold = (predicted < .5).astype(numpy.int)
 
 	# Test the model using the testing sets and check score
 	print '\tTesting score: ', model.score(x_tst, predicted)
+	#print('Probabilities Score: ' + str(predicted))
+	#print('Probabilities Score: ' + str(predicted_threshold))
+	avg_prec = average_precision_score(numpy.array(y_tstLabel), predicted)
+	print('\tPrecision Score: ' + str(avg_prec))
+	recall = recall_score(y_tstLabel, predicted_threshold, average='micro')
+	print('\tRecall Score: ' +  str(recall))
+
 
 def logisticregression():
 	print '\n### Running Logistic Regression Algorithm\n'
@@ -129,7 +137,7 @@ def knearestneighbors():
 	print '\n### Running K-Nearest Neighbors Algorithm\n'
 
 	# Create K-Nearest Neighbors classifier object model
-	model = KNeighborsClassifier(n_neighbors=6) # default value for n_neighbors is 5
+	model = KNeighborsClassifier(n_neighbors=5, leaf_size=25) # default value for n_neighbors is 5
 
 	# Train the model using the training sets and check score
 	model.fit(x_trn, y_trnLabel)
@@ -137,9 +145,19 @@ def knearestneighbors():
 
 	#Predict Output
 	predicted= model.predict(x_tst)
-
+	probabilities = model.predict_proba(x_tst)
+	#print(predicted)
 	# Test the model using the testing sets and check score
-	print '\tTesting score: ', model.score(x_tst, predicted)
+	print '\tTesting score: ', model.score(x_tst, y_tstLabel)
+	probabilities_array = numpy.array((probabilities[:,1]))
+	#print('Probabilities Score: ' + str(probabilities_array))
+	avg_prec = average_precision_score(numpy.array(y_tstLabel), probabilities_array)
+	print('\tPrecision Score: ' + str(avg_prec))
+	recall = recall_score(y_tstLabel, predicted, average='binary')
+	print('\tRecall Score: ' +  str(recall))
+
+	
+	
 
 def kmeans():
 	print '\n### Running K-Means Algorithm\n'
