@@ -52,6 +52,6 @@ def classifier(url):
         another_char_hostname(url)
         )
     )
-    print(raw_features)
 
-classifier("www.google.com")
+# Example
+#  print(classifier("www.google.com"))
