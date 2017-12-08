@@ -42,7 +42,7 @@ x_trn, x_tst, y_trnLabel, y_tstLabel = train_test_split(x, y, test_size=0.01, ra
 def linearregression():
 	print '\n### Running Linear Regression Algorithm\n'
 
-	# Create linear regression object
+	# Create Linear Regression classifier object model
 	model = linear_model.LinearRegression()
 
 	# Train the model using the training sets and check score
@@ -58,7 +58,7 @@ def linearregression():
 def logisticregression():
 	print '\n### Running Logistic Regression Algorithm\n'
 
-	# Create logistic regression object
+	# Create Logistic Regression classifier object model
 	model = LogisticRegression()
 
 	# Train the model using the training sets and check score
@@ -74,7 +74,7 @@ def logisticregression():
 def decisiontree():
 	print '\n### Running Decision Tree Algorithm\n'
 
-	# Create tree object
+	# Create Decision Tree classifier object model
 	model = tree.DecisionTreeClassifier(criterion='gini') # for classification, here you can change the algorithm as gini or entropy (information gain) by default it is gini  
 	# model = tree.DecisionTreeRegressor() for regression
 
@@ -91,7 +91,7 @@ def decisiontree():
 def supportvectormachine():
 	print '\n### Running Support Vector Machine Algorithm\n'
 
-	# Create SVM classification object
+	# Create Support Vector Machine classifier object model
 	model = svm.SVC() # there is various option associated with it, this is simple for classification.
 
 	# Train the model using the training sets and check score
@@ -107,7 +107,7 @@ def supportvectormachine():
 def naivebayes():
 	print '\n### Running Naive Bayes Algorithm\n'
 
-	# Create Random Forest object
+	# Create Naive Bayes classifier object model
 	model = GaussianNB()
 
         x1 = x.toarray()	# Convert to a dense numpy array.
@@ -128,7 +128,7 @@ def naivebayes():
 def knearestneighbors():
 	print '\n### Running K-Nearest Neighbors Algorithm\n'
 
-	# Create KNeighbors classifier object model
+	# Create K-Nearest Neighbors classifier object model
 	model = KNeighborsClassifier(n_neighbors=6) # default value for n_neighbors is 5
 
 	# Train the model using the training sets and check score
@@ -144,7 +144,7 @@ def knearestneighbors():
 def kmeans():
 	print '\n### Running K-Means Algorithm\n'
 
-	# Create KNeighbors classifier object model
+	# Create K-Means classifier object model
 	model = KMeans(n_clusters=3, random_state=0)
 
 	# Train the model using the training sets and check score
@@ -160,7 +160,7 @@ def kmeans():
 def randomforest():
 	print '\n### Running Random Forest Algorithm\n'
 
-	# Create Random Forest object
+	# Create Random Forest classifier object model
 	model = RandomForestClassifier()
 
 	# Train the model using the training sets and check score
