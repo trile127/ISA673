@@ -1,5 +1,8 @@
 # ISA673
 
+Proxy Files
 Sources:
 
-https://github.com/Jcharis/Machine-Learning-In-Julia-JCharisTech/blob/master/Detecting%20Malicious%20Url%20With%20Machine%20Learning%20In%20Python.ipynb
+http://www.geeksforgeeks.org/creating-a-proxy-webserver-in-python-set-1/
+
+http://www.geeksforgeeks.org/creating-a-proxy-webserver-in-python-set-2/
